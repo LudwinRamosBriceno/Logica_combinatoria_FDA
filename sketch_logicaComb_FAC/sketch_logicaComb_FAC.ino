@@ -1,5 +1,5 @@
-#define pinTrigger A1
-#define echoPin A2
+#define pinTrigger A0
+#define echoPin A1
 
 #define BitBin0 A3
 #define BitBin1 A4
@@ -35,9 +35,9 @@ void setup() {
   pinMode(BitGray2, OUTPUT);
 
   // Pines para el código binario de entrada
-  pinMode(17, INPUT);
-  pinMode(18, INPUT);
-  pinMode(19, INPUT);
+  pinMode(BitBin0, INPUT);
+  pinMode(BitBin1, INPUT);
+  pinMode(BitBin2, INPUT);
 
   //  Pines para el display de siete segmentos
   pinMode(Display_a, OUTPUT);
@@ -60,34 +60,34 @@ void loop() {
   
   // Se toma el tiempo que duró el disparo
   travel_time = pulseIn(echoPin, HIGH);
-  distancia = (travel_time/2)*(0.0344); // 0.0344 velocidad del sonido a 20 C°
+  distancia = (travel_time/2)*(0.0344); 
 
   // condiciones según el valor del potenciómetro para la tabla de gray
-  if(distancia <= 58) {
+  if(distancia <= 45) {
     OutGray[2] = 0; OutGray[1] = 0; OutGray[0] = 0; } // 0
 
-  if(distancia > 58 && distancia <= 114) {
+  if(distancia > 45 && distancia <= 90) {
     OutGray[2] = 0; OutGray[1] = 0; OutGray[0] = 1; } // 1
 
-  if(distancia > 114 && distancia <= 170) {
+  if(distancia > 90 && distancia <= 135) {
     OutGray[2] = 0; OutGray[1] = 1; OutGray[0] = 1; } // 2
 
-  if(distancia > 170 && distancia <= 226) {
+  if(distancia > 135 && distancia <= 180) {
     OutGray[2] = 0; OutGray[1] = 1; OutGray[0] = 0; } // 3
 
-  if(distancia > 226 && distancia <= 282) {
+  if(distancia > 180 && distancia <= 225) {
     OutGray[2] = 1; OutGray[1] = 1; OutGray[0] = 0; } // 4
 
-  if(distancia > 282 && distancia <= 338) {
+  if(distancia > 225 && distancia <= 270) {
     OutGray[2] = 1; OutGray[1] = 1; OutGray[0] = 1; } // 5
 
-  if(distancia > 338 && distancia <= 394) {
+  if(distancia > 270 && distancia <= 315) {
     OutGray[2] = 1; OutGray[1] = 0; OutGray[0] = 1; } // 6
 
-  if(distancia > 394) {
+  if(distancia > 315) {
     OutGray[2] = 1; OutGray[1] = 0; OutGray[0] = 0; } // 7
 
-  setOut_pinGray();
+  setOut_pin();
   set_displaySeg();
   Serial.print("La distancia es: ");
   Serial.println(distancia);
@@ -95,7 +95,7 @@ void loop() {
 }
 
 // Se colocan en alto los bits que posean un 1
-void setOut_pinGray(){
+void setOut_pin(){
   int index_gray = 0;
   for (int i = 9; i < 12; i++){
 
