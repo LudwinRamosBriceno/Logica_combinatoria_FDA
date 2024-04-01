@@ -63,28 +63,28 @@ void loop() {
   distancia = (travel_time/2)*(0.0344); 
 
   // condiciones según el valor del potenciómetro para la tabla de gray
-  if(distancia <= 45) {
+  if(distancia <= 12) {
     OutGray[2] = 0; OutGray[1] = 0; OutGray[0] = 0; } // 0
 
-  if(distancia > 45 && distancia <= 90) {
+  if(distancia > 12 && distancia <= 24) {
     OutGray[2] = 0; OutGray[1] = 0; OutGray[0] = 1; } // 1
 
-  if(distancia > 90 && distancia <= 135) {
+  if(distancia > 24 && distancia <= 36) {
     OutGray[2] = 0; OutGray[1] = 1; OutGray[0] = 1; } // 2
 
-  if(distancia > 135 && distancia <= 180) {
+  if(distancia > 36 && distancia <= 48) {
     OutGray[2] = 0; OutGray[1] = 1; OutGray[0] = 0; } // 3
 
-  if(distancia > 180 && distancia <= 225) {
+  if(distancia > 48 && distancia <= 60) {
     OutGray[2] = 1; OutGray[1] = 1; OutGray[0] = 0; } // 4
 
-  if(distancia > 225 && distancia <= 270) {
+  if(distancia > 60 && distancia <= 72) {
     OutGray[2] = 1; OutGray[1] = 1; OutGray[0] = 1; } // 5
 
-  if(distancia > 270 && distancia <= 315) {
+  if(distancia > 72 && distancia <= 84) {
     OutGray[2] = 1; OutGray[1] = 0; OutGray[0] = 1; } // 6
 
-  if(distancia > 315) {
+  if(distancia > 84) {
     OutGray[2] = 1; OutGray[1] = 0; OutGray[0] = 0; } // 7
 
   setOut_pin();
