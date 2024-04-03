@@ -87,21 +87,21 @@ void loop() {
   if(distancia > 84) {
     OutGray[2] = 1; OutGray[1] = 0; OutGray[0] = 0; } // 7
 
+  Serial.print("La distancia es: "+String(distancia)+ " cm | ");
   setOut_pin();
   set_displaySeg();
-  Serial.print("La distancia es: ");
-  Serial.println(distancia);
   delay(200); // 200 ms
 }
 
 // Se colocan en alto los bits que posean un 1
 void setOut_pin(){
-  int index_gray = 0;
-  for (int i = 9; i < 12; i++){
-
+  int index_gray = 2;
+  Serial.print("Gray --> ");
+  for (int i = 11; i > 8; i--){
+    Serial.print(String(OutGray[index_gray]));
     if (OutGray[index_gray] == 0){digitalWrite(i, LOW);}
     else {digitalWrite(i, HIGH);}
-    index_gray++;
+    index_gray--;
   }
 }
 
@@ -114,38 +114,47 @@ void set_displaySeg(){
 
     case 0b000:
         segments_display = 0b0111111; // 0
+        Serial.println(" | Decimal --> 0");
         
       break;
     case 0b001:
         segments_display = 0b0000110; // 1
-      
+        Serial.println(" | Decimal --> 1");
+
       break;
     case 0b010:
         segments_display = 0b1011011;  // 2
+        Serial.println(" | Decimal --> 2");
       
       break;
     case 0b011:
         segments_display = 0b1001111;  // 3
+        Serial.println(" | Decimal --> 3");
       
       break;
     case 0b100:
       segments_display = 0b1100110;  // 4
-      
+      Serial.println(" | Decimal --> 4");
+
       break;
     case 0b101:
       segments_display = 0b1101101;  // 5
+      Serial.println(" | Decimal --> 5");
 
       break;
     case 0b110:
       segments_display = 0b1111101;  // 6
+      Serial.println(" | Decimal --> 6");
       
       break;
     case 0b111:
       segments_display = 0b0000111; // 7
+      Serial.println(" | Decimal --> 7");
 
       break;
     default:
       segments_display = 0b0111111;
+      Serial.println(" | Decimal --> 0");
 
       break;
   }
